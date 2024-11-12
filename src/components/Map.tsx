@@ -21,8 +21,12 @@ const Map = ({ apiKey, lat, lng, zoom }: MapProps) => {
         container: mapElement.current, // HTML-элемент для рендера карты
         center: [lng, lat], // Начальные координаты
         zoom: zoom, // Начальный уровень зума
-        language: "de", // Язык карты
-        // style: '', // Стиль карты
+        pitch: 45, // Угол наклона карты
+        stylesVisibility: {
+          map: true,
+          trafficFlow: true,
+          trafficIncidents: true,
+        },
       });
     }
 
@@ -33,7 +37,7 @@ const Map = ({ apiKey, lat, lng, zoom }: MapProps) => {
     };
   }, [apiKey, lat, lng, zoom]);
 
-  return <div ref={mapElement} style={{ width: "50vh", height: "50vh" }} />;
+  return <div ref={mapElement} style={{ width: "50%", height: "50%" }} />;
 };
 
 export default Map;
