@@ -11,11 +11,11 @@ interface MapProps {
 }
 
 const Map = ({ apiKey, lat, lng, zoom }: MapProps) => {
-  const mapElement = useRef(); // Реф для HTML элемента карты
+  const mapElement = useRef<HTMLDivElement | null>(null); // Реф для HTML элемента карты
   const mapInstance = useRef<TomTomMap | null>(null); // Реф для инстанса карты с правильным типом
 
   useEffect(() => {
-    if (mapElement.current && apiKey) {
+    if (mapElement.current && !mapInstance.current && apiKey) {
       mapInstance.current = tt.map({
         key: apiKey, // Ваш API ключ
         container: mapElement.current, // HTML-элемент для рендера карты
